@@ -1,6 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($rootScope,
+                                $scope,
+                                $ionicModal,
+                                $timeout,
+                                $auth,
+                                $ionicLoading) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,6 +13,10 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+  $rootScope.$on('auth:login-success', function(ev, user) {
+    $scope.currentUser = user;
+  });
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -31,13 +40,27 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    // console.log('Doing login', $scope.loginData);
+    //
+    // // Simulate a login delay. Remove this and replace with your login
+    // // code if using a login system
+    // $timeout(function() {
+    //   $scope.closeLogin();
+    // }, 1000);
+    $ionicLoading.show({
+      template: 'Logging in...'
+    });
+    $auth.submitLogin($scope.loginData)
+      .then(function(resp) {
+        // handle success response
+        $ionicLoading.hide();
+        $scope.closeLogin();
+      })
+      .catch(function(error) {
+        // handle error response
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
   };
 })
 
