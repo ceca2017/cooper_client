@@ -138,6 +138,12 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('DataCtrl', function($scope, $stateParams){
+  $scope.$on('$ionicView.enter', function() {
+    $scope.savedDataCollection = $stateParams.savedDataCollection;
+  });
+})
+
 .controller('TestController', function($scope) {
   $scope.gender = ['Male', 'Female'];
   $scope.ageValues = {
