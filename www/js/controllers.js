@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   //});
 
   $rootScope.$on('auth:login-success', function(ev, user) {
-    $scope.currentUser = user;
+    $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
   });
 
   // Form data for the login modal
@@ -95,6 +95,37 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
         $scope.errorMessage = error;
       });
+  };
+})
+
+.controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup, $state) {
+
+  $scope.saveData = function(person) {
+    var data = {performance_data: {data: {message: person.cooperMessage}}};
+    $ionicLoading.show({
+      template: 'Saving...'
+    });
+    performanceData.save(data, function(response){
+      $ionicLoading.hide();
+      $scope.showAlert('Success', response.message);
+    }, function(error){
+      $ionicLoading.hide();
+      $scope.showAlert('Error', error.statusText);
+    });
+  };
+
+  $scope.retrieveData = function() {
+
+  };
+
+  $scope.showAlert = function(message, content) {
+    var alertPopup = $ionicPopup.alert({
+      title: message,
+      template: content
+    });
+    alertPopup.then(function(res) {
+      // some action if needed ...
+    });
   };
 })
 
