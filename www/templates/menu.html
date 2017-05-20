@@ -21,10 +21,10 @@
         <ion-item ng-if="!currentUser" menu-close ng-click="login()">
           Login
         </ion-item>
-        <ion-item menu-close ng-click="signup()">
+        <ion-item ng-if="!currentUser" menu-close ng-click="signup()">
           Sign up
         </ion-item>
-        <ion-item menu-close href="#/app/test">
+        <ion-item ng-if="currentUser" menu-close href="#/app/test">
           Cooper Test
         </ion-item>
         <ion-item ng-if="currentUser" menu-close ng-controller="PerformanceCtrl" ng-click="retrieveData()">
