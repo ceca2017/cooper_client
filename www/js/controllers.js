@@ -21,6 +21,9 @@ angular.module('starter.controllers', [])
   // Form data for the login modal
   $scope.loginData = {};
 
+  // Form data for the signup modal
+  $scope.signupData = {};
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -62,7 +65,97 @@ angular.module('starter.controllers', [])
         $scope.errorMessage = error;
       });
   };
+
+
+
+
+  // Create the sigup modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/signup.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalSignup = modal;
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeSignup = function() {
+    $scope.modalSignup.hide();
+  };
+
+  // Open the signup modal
+  $scope.signup = function() {
+    $scope.modalSignup.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doSignup = function() {
+    $ionicLoading.show({
+      template: 'signin in...'
+    });
+    $auth.submitRegistration($scope.signupData)
+      .then(function(resp) {
+        // handle success response
+        $ionicLoading.hide();
+        $scope.closeSignup();
+      })
+      .catch(function(error) {
+        // handle error response
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
 })
+
+
+// use an alert
+// heroku logs -t
+
+
+// .controller('IndexCtrl', function($rootScope,
+//                                 $scope,
+//                                 $ionicModal,
+//                                 $timeout,
+//                                 $auth,
+//                                 $ionicLoading) {
+//
+//
+//   // Form data for the login modal
+//   //$scope.signupData = {};
+//
+//   // Create the sigup modal that we will use later
+//   $ionicModal.fromTemplateUrl('templates/signup.html', {
+//     scope: $scope
+//   }).then(function(modal) {
+//     $scope.modalSignup = modal;
+//   });
+//
+//   // Triggered in the login modal to close it
+//   $scope.closeSignup = function() {
+//     $scope.modalSignup.hide();
+//   };
+//
+//   // Open the login modal
+//   $scope.signup = function() {
+//     $scope.modalSignup.show();
+//   };
+//
+//   // Perform the login action when the user submits the login form
+//   $scope.doSingup = function() {
+//     $ionicLoading.show({
+//       template: 'signin in...'
+//     });
+//     $auth.submitSignup($scope.signupData)
+//       .then(function(resp) {
+//         // handle success response
+//         $ionicLoading.hide();
+//         $scope.closeSignup();
+//       })
+//       .catch(function(error) {
+//         // handle error response
+//         $ionicLoading.hide();
+//         $scope.errorMessage = error;
+//       });
+//   };
+// })
 
 .controller('TestController', function($scope) {
   $scope.gender = ['Male', 'Female']
