@@ -43,13 +43,6 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    // console.log('Doing login', $scope.loginData);
-    //
-    // // Simulate a login delay. Remove this and replace with your login
-    // // code if using a login system
-    // $timeout(function() {
-    //   $scope.closeLogin();
-    // }, 1000);
     $ionicLoading.show({
       template: 'Logging in...'
     });
@@ -105,60 +98,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-
-// use an alert
-// heroku logs -t
-
-
-// .controller('IndexCtrl', function($rootScope,
-//                                 $scope,
-//                                 $ionicModal,
-//                                 $timeout,
-//                                 $auth,
-//                                 $ionicLoading) {
-//
-//
-//   // Form data for the login modal
-//   //$scope.signupData = {};
-//
-//   // Create the sigup modal that we will use later
-//   $ionicModal.fromTemplateUrl('templates/signup.html', {
-//     scope: $scope
-//   }).then(function(modal) {
-//     $scope.modalSignup = modal;
-//   });
-//
-//   // Triggered in the login modal to close it
-//   $scope.closeSignup = function() {
-//     $scope.modalSignup.hide();
-//   };
-//
-//   // Open the login modal
-//   $scope.signup = function() {
-//     $scope.modalSignup.show();
-//   };
-//
-//   // Perform the login action when the user submits the login form
-//   $scope.doSingup = function() {
-//     $ionicLoading.show({
-//       template: 'signin in...'
-//     });
-//     $auth.submitSignup($scope.signupData)
-//       .then(function(resp) {
-//         // handle success response
-//         $ionicLoading.hide();
-//         $scope.closeSignup();
-//       })
-//       .catch(function(error) {
-//         // handle error response
-//         $ionicLoading.hide();
-//         $scope.errorMessage = error;
-//       });
-//   };
-// })
-
 .controller('TestController', function($scope) {
-  $scope.gender = ['Male', 'Female']
+  $scope.gender = ['Male', 'Female'];
   $scope.ageValues = {
     min: 20,
     max: 60,
