@@ -152,8 +152,9 @@ angular.module('starter.controllers', [])
   function getLabels(collection) {
     var uniqueLabels = [];
     for (i = 0; i < collection.length; i++) {
-      if (collection[i].data.message && uniqueLabels.indexOf(collection[i].data.message) ===
-        uniqueLabels.push(collection[i].data.message));
+      if (collection[i].data.message && uniqueLabels.indexOf(collection[i].data.message) === -1 ) {
+        uniqueLabels.push(collection[i].data.message);
+      }
     }
     return uniqueLabels;
   }
