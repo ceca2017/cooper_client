@@ -10,7 +10,7 @@
                 chart-data="radardata" chart-labels="labels">
         </canvas>
         <ion-list ng-repeat="entry in savedDataCollection" ng-if="savedDataCollection && entry.data.message">
-          <span>{{entry.data.message}} - {{entry.created_at | date:'mediumData'}}</span>
+          <span>{{entry.data.message}} - {{entry.created_at | date:'mediumDate'}}</span>
         </ion-list>
       </div>
     </div>
