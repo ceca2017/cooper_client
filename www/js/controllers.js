@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
   $scope.ageValues = {
     min: 20,
     max: 60,
-    value:20
+    value: 20
   };
   $scope.distanceValues = {
     min: 1000,
@@ -188,6 +188,5 @@ angular.module('starter.controllers', [])
     });
     person.assessCooper($scope.data.distance);
     $scope.person = person;
-    console.log($scope.person);
   };
 });

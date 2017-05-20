@@ -29,9 +29,9 @@
           </div>
 
           <div class="item item-divider">Distance
-            <output name="distvalue" for ="distance"></output>
+            <output name="distvalue" for="distance"></output>
           </div>
-          <div class="item range-positive">
+          <div class="item range range-positive">
             <input
             name="distance"
             type="range"
@@ -40,7 +40,7 @@
             value="{{distanceValues.value}}"
             ng-model="data.distance"
             oninput="distvalue.value = distance.value"
-            required>{{distValues.min}}/{{distValues.max}} m
+            required>{{distanceValues.min}} - {{distanceValues.max}} m
           </div>
 
           <button
