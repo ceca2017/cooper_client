@@ -1,0 +1,22 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Sign out</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeSignout()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="row" ng-if="errorMessage">
+      <p ng-repeat="error in errorMessage.error">
+        {{error}}
+      </p>
+    </div>
+    <form ng-submit="doSignout()">
+      <div class="list">
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Sign out</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

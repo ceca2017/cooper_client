@@ -16,6 +16,11 @@ angular.module('starter.controllers', [])
 
   $rootScope.$on('auth:login-success', function(ev, user) {
     $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
+      console.log($scope.currentUser);
+  });
+
+  $rootScope.$on('auth:logout-success', function() {
+    delete $scope.currentUser;
   });
 
   // Form data for the login modal
@@ -60,6 +65,41 @@ angular.module('starter.controllers', [])
   };
 
 
+  // Create the sign out modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/signout.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalSignout = modal;
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeSignout = function() {
+    $scope.modalSignout.hide();
+  };
+
+  // Open the signout modal
+  $scope.signout = function() {
+    $scope.modalSignout.show();
+  };
+
+  // Perform the signout action when the user submits the login form
+  $scope.doSignout = function() {
+    $ionicLoading.show({
+      template: 'Signing out...'
+    });
+    $auth.signOut()
+      .then(function(resp) {
+        // handle success response
+        $ionicLoading.hide();
+        $scope.closeSignout();
+      })
+      .catch(function(error) {
+        // handle error response
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+
 
 
   // Create the sigup modal that we will use later
@@ -97,6 +137,9 @@ angular.module('starter.controllers', [])
       });
   };
 })
+
+
+
 
 .controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup, $state) {
 
