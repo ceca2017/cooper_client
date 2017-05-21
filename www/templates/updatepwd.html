@@ -1,0 +1,74 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Change Password</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeUpdatePwd()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <!-- <form ng-submit="doChangePwd(updatePwdData)" role="form" ng-init="updatePwdData={}">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="updatePwdData.password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password confirmation</span>
+          <input type="password" ng-model="updatePwdData.password_confirmation">
+        </label>
+        <label class="item" ng-if="!okMessage">
+          <button class="button button-block button-positive" type="submit">Update Password</button>
+        </label>
+      </div>
+    </form> -->
+
+    <form ng-submit="updatePassword(changePasswordForm)" role="form" ng-init="changePasswordForm = {}">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" ng-model="changePasswordForm.password" required="required" class="form-control">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password confirmation</span>
+          <input type="password" name="password_confirmation" ng-model="changePasswordForm.password_confirmation" required="required" class="form-control">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Change your password</button>
+        </label>
+      </div>
+    </form>
+
+    <!-- <form ng-submit="updatePassword()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="changePasswordForm.password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password confirmation</span>
+          <input type="password" ng-model="changePasswordForm.password_confirmation">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Change your password</button>
+        </label>
+      </div>
+    </form>
+
+    <div class="row" ng-if="errorMessage">
+      <p ng-repeat="error in errorMessage.data.errors.full_messages">
+        {{error}}. Please try again.
+      </p>
+    </div> -->
+    <!-- <div ng-if="okMessage">
+      <form ng-submit="closeUpdatePwd()">
+        <div class="list">
+          <p>Your password has been uodated.</p>
+          <p>Press OK below to close the form</p>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">OK</button>
+          </label>
+        </div>
+      </form>
+    </div> -->
+  </ion-content>
+</ion-modal-view>

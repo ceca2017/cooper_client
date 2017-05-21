@@ -6,11 +6,6 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <div class="row" ng-if="errorMessage">
-      <p ng-repeat="error in errorMessage.errors">
-        {{error}}
-      </p>
-    </div>
     <form ng-submit="doSignup()">
       <div class="list">
         <label class="item item-input">

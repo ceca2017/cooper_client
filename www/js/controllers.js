@@ -16,7 +16,6 @@ angular.module('starter.controllers', [])
 
   $rootScope.$on('auth:login-success', function(ev, user) {
     $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
-      console.log($scope.currentUser);
   });
 
   $rootScope.$on('auth:logout-success', function() {
@@ -29,6 +28,9 @@ angular.module('starter.controllers', [])
   // Form data for the signup modal
   $scope.signupData = {};
 
+  // Form data for the change passord modal
+  $scope.changePasswordForm = {};
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -39,6 +41,7 @@ angular.module('starter.controllers', [])
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
+    $scope.errorMessage = {};
   };
 
   // Open the login modal
@@ -100,7 +103,48 @@ angular.module('starter.controllers', [])
       });
   };
 
+  // Change password
 
+  // Create the update password modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/updatepwd.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalUpdatePwd = modal;
+  });
+
+  // Triggered in the modal to close it
+  $scope.closeUpdatePwd = function() {
+    $scope.modalUpdatePwd.hide();
+    $scope.okMessage = '';
+    $scope.errorMessage = {};
+  };
+
+  // Open the modal
+  $scope.updatePwd = function() {
+    $scope.modalUpdatePwd.show();
+  };
+
+  $scope.handleUpdatePasswordBtnClick = function() {
+    $ionicLoading.show({
+      template: 'Updating password...'
+    });
+    $auth.updatePassword($scope.changePasswordForm)
+      .then(function(resp) {
+        // handle success response
+        $ionicLoading.hide();
+        //$scope.okMessage ='Success';
+        $scope.closeUpdatePwd();
+      })
+      .catch(function(error) {
+        // handle error response
+        console.log(error);
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+
+
+  // Sign-up
 
   // Create the sigup modal that we will use later
   $ionicModal.fromTemplateUrl('templates/signup.html', {
@@ -112,6 +156,8 @@ angular.module('starter.controllers', [])
   // Triggered in the login modal to close it
   $scope.closeSignup = function() {
     $scope.modalSignup.hide();
+    $scope.okMessage = '';
+    $scope.errorMessage = {};
   };
 
   // Open the signup modal
@@ -128,7 +174,6 @@ angular.module('starter.controllers', [])
       .then(function(resp) {
         // handle success response
         $ionicLoading.hide();
-        //$scope.closeSignup();
         $scope.okMessage ='Success';
       })
       .catch(function(error) {
