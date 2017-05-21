@@ -6,11 +6,6 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <div class="row" ng-if="errorMessage">
-      <p ng-repeat="error in errorMessage.error">
-        {{error}}
-      </p>
-    </div>
     <form ng-submit="doSignout()">
       <div class="list">
         <label class="item">
@@ -18,5 +13,10 @@
         </label>
       </div>
     </form>
+    <div class="row" ng-if="errorMessage">
+      <p ng-repeat="error in errorMessage.errors">
+        {{error}}
+      </p>
+    </div>
   </ion-content>
 </ion-modal-view>

@@ -122,13 +122,14 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doSignup = function() {
     $ionicLoading.show({
-      template: 'signin in...'
+      template: 'Creating user...'
     });
     $auth.submitRegistration($scope.signupData)
       .then(function(resp) {
         // handle success response
         $ionicLoading.hide();
-        $scope.closeSignup();
+        //$scope.closeSignup();
+        $scope.okMessage ='Success';
       })
       .catch(function(error) {
         // handle error response

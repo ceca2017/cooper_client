@@ -7,7 +7,7 @@
   </ion-header-bar>
   <ion-content>
     <div class="row" ng-if="errorMessage">
-      <p ng-repeat="error in errorMessage.error">
+      <p ng-repeat="error in errorMessage.errors">
         {{error}}
       </p>
     </div>
@@ -25,10 +25,26 @@
           <span class="input-label">Password confirmation</span>
           <input type="password" ng-model="signupData.password_confirmation">
         </label>
-        <label class="item">
+        <label class="item" ng-if="!okMessage">
           <button class="button button-block button-positive" type="submit">Sign up</button>
         </label>
       </div>
     </form>
+    <div class="row" ng-if="errorMessage">
+      <p ng-repeat="error in errorMessage.data.errors.full_messages">
+        {{error}}. Please try again.
+      </p>
+    </div>
+    <div ng-if="okMessage">
+      <form ng-submit="closeSignup()">
+        <div class="list">
+          <p>Sign up ok. Account has been created and can be used to sign in.</p>
+          <p>Press OK below to close the form</p>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">OK</button>
+          </label>
+        </div>
+      </form>
+    </div>
   </ion-content>
 </ion-modal-view>
