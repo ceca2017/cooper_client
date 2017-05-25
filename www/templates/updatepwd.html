@@ -22,17 +22,21 @@
       </div>
     </form> -->
 
-    <form ng-submit="updatePassword(changePasswordForm)" role="form" ng-init="changePasswordForm = {}">
+    <form ng-submit="doUpdatePassword()">
       <div class="list">
+        <!-- <label class="item item-input">
+          <span class="input-label">Current Password</span>
+          <input type="password" name="password" ng-model="changePasswordForm.current_password" required="required" class="form-control">
+        </label> -->
         <label class="item item-input">
-          <span class="input-label">Password</span>
+          <span class="input-label">New Password</span>
           <input type="password" name="password" ng-model="changePasswordForm.password" required="required" class="form-control">
         </label>
         <label class="item item-input">
           <span class="input-label">Password confirmation</span>
           <input type="password" name="password_confirmation" ng-model="changePasswordForm.password_confirmation" required="required" class="form-control">
         </label>
-        <label class="item">
+        <label class="item" ng-if="!okMessage">
           <button class="button button-block button-positive" type="submit">Change your password</button>
         </label>
       </div>
@@ -53,22 +57,22 @@
         </label>
       </div>
     </form>
-
+-->
     <div class="row" ng-if="errorMessage">
       <p ng-repeat="error in errorMessage.data.errors.full_messages">
         {{error}}. Please try again.
       </p>
-    </div> -->
-    <!-- <div ng-if="okMessage">
+    </div>
+    <div ng-if="okMessage">
       <form ng-submit="closeUpdatePwd()">
         <div class="list">
-          <p>Your password has been uodated.</p>
+          <p>Your password has been updated.</p>
           <p>Press OK below to close the form</p>
           <label class="item">
             <button class="button button-block button-positive" type="submit">OK</button>
           </label>
         </div>
       </form>
-    </div> -->
+    </div>
   </ion-content>
 </ion-modal-view>

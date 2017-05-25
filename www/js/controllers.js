@@ -124,7 +124,9 @@ angular.module('starter.controllers', [])
     $scope.modalUpdatePwd.show();
   };
 
-  $scope.handleUpdatePasswordBtnClick = function() {
+  //$scope.handleUpdatePasswordBtnClick = function() {
+  $scope.doUpdatePassword = function() {
+    console.log("handleUpdatePasswordBtnClick")
     $ionicLoading.show({
       template: 'Updating password...'
     });
@@ -132,8 +134,9 @@ angular.module('starter.controllers', [])
       .then(function(resp) {
         // handle success response
         $ionicLoading.hide();
-        //$scope.okMessage ='Success';
-        $scope.closeUpdatePwd();
+        console.log("Success")
+        $scope.okMessage ='Success';
+        //$scope.closeUpdatePwd();
       })
       .catch(function(error) {
         // handle error response
